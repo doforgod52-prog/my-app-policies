@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTG - Church of the Temple of God</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f3fb;
+      color: #29243b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #30264d;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 { margin: 0; font-size: 32px; }
+    header p { margin: 5px 0 0; color: #e5def8; }
+
+    main {
+      max-width: 720px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 18px #25194312;
+    }
+
+    h2 { margin-top: 0; }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      background: #514080;
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button:disabled {
+      background: #aaa4b8;
+      cursor: not-allowed;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 16px;
+      border: 1px solid #d8d2e5;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    .note {
+      padding: 13px;
+      background: #f2eff9;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #625b71;
+      font-size: 14px;
+    }
+
+    footer a { color: #514080; margin: 0 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CTG</h1>
+    <p>Church of the Temple of God</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Share the message of faith.</h2>
+      <p>
+        Prepare church-related and devotional videos
+        for your authorized TikTok account.
+      </p>
+      <p class="note">
+        TikTok account connection is not configured yet.
+        This webpage is an initial prototype.
+      </p>
+      <button class="button" disabled>
+        TikTok connection coming soon
+      </button>
+    </section>
+
+    <section class="card">
+      <h2>Prepare a devotional video</h2>
+      <form id="videoForm">
+        <label for="video">Choose a video from your computer</label>
+        <input
+          type="file"
+          id="video"
+          accept="video/mp4,video/quicktime"
+          required
+        >
+
+        <label for="caption">Video caption</label>
+        <textarea
+          id="caption"
+          rows="4"
+          maxlength="2200"
+          placeholder="Write your devotional message..."
+          required
+        ></textarea>
+
+        <button class="button" type="submit">
+          Preview my selection
+        </button>
+      </form>
+      <p id="status" role="status"></p>
+      <p class="note">
+        This prototype only previews your selection in this page.
+        It does not upload or publish videos to TikTok.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>How CTG will work</h2>
+      <ol>
+        <li>Connect an authorized TikTok account.</li>
+        <li>Select a church or devotional video.</li>
+        <li>Review the caption and publishing settings.</li>
+        <li>Confirm the action and check the publishing status.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>CTG — Church of the Temple of God</p>
+    <a href="terms.html">Terms of Service</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <p>Contact: doforGod52@gmail.com</p>
+  </footer>
+
+  <script>
+    document.getElementById("videoForm").addEventListener(
+      "submit",
+      function (event) {
+        event.preventDefault();
+
+        const video = document.getElementById("video").files[0];
+        const caption = document.getElementById("caption").value.trim();
+        const status = document.getElementById("status");
+
+        if (!video || !caption) {
+          status.textContent = "Please choose a video and enter a caption.";
+          return;
+        }
+
+        status.textContent =
+          "Selected: " + video.name +
+          ". Your caption is ready for preview. Nothing has been published.";
+      }
+    );
+  </script>
+</body>
+</html>
